@@ -20,7 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
 
 
@@ -29,6 +29,17 @@ public class NewBehaviourScript : MonoBehaviour
         transform.LookAt(waypoints[waypointIndex]);
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         if (Vector3.Distance(transform.position, waypoints[waypointIndex].position) < range)
+        {
+            waypointIndex++;
+            if(waypointIndex >= waypoints.Count)
+            {
+                waypointIndex = 0;
+            }
+                    
+                    
+        }
+                        
+                
     }
 
 
