@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public Transform respawnPoint;
 
     private Rigidbody rb;
     private int count;
@@ -26,6 +27,13 @@ public class PlayerController : MonoBehaviour
         winTextObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        if(transform.position.y < -10)
+        {
+            Respawn();
+        }
+    }
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
@@ -38,7 +46,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        
+
         rb.AddForce(movement * speed);
     }
 
@@ -54,17 +62,30 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PickUp")) 
+        if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
         }
-       
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Respawn();
+        }
     }
 
 
-
+    void Respawn()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.Sleep();
+        transform.position = respawnPoint.position;
+    }
 }
 
 
