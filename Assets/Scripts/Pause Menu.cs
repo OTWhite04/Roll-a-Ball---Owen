@@ -43,6 +43,10 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
+    public void GoToLevel2()
+    {
+        SceneManager.LoadScene("Roll-a-Ball_Level_2_Owen");
+    }
 
     public void GoToMainMenu()
     {
@@ -54,5 +58,8 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+
+
 
 }
