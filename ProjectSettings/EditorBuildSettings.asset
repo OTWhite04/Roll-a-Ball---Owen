@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Roll-a-Ball_Level_2_Owen.unity
     guid: 4b70e11b0ebf0e7438cbf4e1acd3fff1
-  - enabled: 1
-    path: Assets/Scenes/Roll-a-Ball_Level_3_Owen.unity
-    guid: 2d125e15df81fd44094043b73de92650
   m_configObjects: {}
