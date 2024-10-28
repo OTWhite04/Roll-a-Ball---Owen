@@ -10,6 +10,15 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Roll-a-Ball_Level_1_Owen");
     }
 
+    public void ControlsMenu()
+    {
+        SceneManager.LoadScene("Controls_Menu");
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Main_Menu");
+    }
 
     public void QuitGame()
     {
