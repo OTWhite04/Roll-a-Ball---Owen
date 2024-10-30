@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Controls_Menu.unity
     guid: d46f1a84d4e6e3f44b4ff9c7106e98f4
   - enabled: 1
+    path: Assets/Scenes/Level_Select.unity
+    guid: 1f5879bb67e1097418e24a6c9be46fe7
+  - enabled: 1
     path: Assets/Scenes/Roll-a-Ball_Level_1_Owen.unity
     guid: 82ee869d9a1f2844083d8eb6952473e9
   - enabled: 1

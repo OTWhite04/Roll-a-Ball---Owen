@@ -43,6 +43,11 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
+    public void GoToLevel1()
+    {
+        SceneManager.LoadScene("Roll-a-Ball_Level_1_Owen");
+    }
+
     public void GoToLevel2()
     {
         SceneManager.LoadScene("Roll-a-Ball_Level_2_Owen");
