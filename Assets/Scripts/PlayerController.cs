@@ -4,17 +4,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI livesText;
     public GameObject winTextObject;
     public Transform respawnPoint;
 
     private Rigidbody rb;
     private int count;
+    private int lives;
     private float movementX;
     private float movementY;
 
@@ -23,9 +26,11 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        lives = 3;
 
         SetCountText();
         winTextObject.SetActive(false);
+        SetLivesText();
     }
 
     private void Update()
@@ -60,8 +65,21 @@ public class PlayerController : MonoBehaviour
         {
             winTextObject.SetActive(true);
         }
+        
+   
     }
 
+    void SetLivesText()
+    {
+        livesText.text = "Lives:" + lives.ToString();
+
+        if (lives == 0)
+        {
+            rb.Sleep();
+            SceneManager.LoadScene("GameOver_Screen");
+        }
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -78,6 +96,8 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             Respawn();
+            lives = lives - 1;
+            SetLivesText();
         }
     }
 
@@ -88,6 +108,8 @@ public class PlayerController : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         rb.Sleep();
         transform.position = respawnPoint.position;
+        
+       
     }
 }
 
