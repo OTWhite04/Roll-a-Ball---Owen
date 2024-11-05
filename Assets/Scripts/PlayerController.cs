@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
         if(transform.position.y < -25)
         {
             Respawn();
+            lives = lives - 1;
+            SetLivesText();
         }
     }
 
