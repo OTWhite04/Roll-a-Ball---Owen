@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   countText: {fileID: 675658141}
-  livesText: {fileID: 0}
+  livesText: {fileID: 851621201}
   winTextObject: {fileID: 1899901837}
   respawnPoint: {fileID: 788641082}
 --- !u!114 &490498290
