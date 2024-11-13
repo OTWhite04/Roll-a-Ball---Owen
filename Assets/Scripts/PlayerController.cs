@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Rigidbody))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI livesText;
     public GameObject winTextObject;
     public Transform respawnPoint;
+    public Vector3 jump;
+    public float jumpForce = 2.5f;
+    public bool isGrounded;
 
     private Rigidbody rb;
     private int count;
@@ -25,6 +29,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        jump = new Vector3(0.0f, 2.5f, 0.0f);
+        
         count = 0;
         lives = 3;
 
@@ -33,8 +39,19 @@ public class PlayerController : MonoBehaviour
         SetLivesText();
     }
 
+    void OnCollisionStay()
+    {
+        isGrounded = true;
+    }
+
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+        
         if(transform.position.y < -25)
         {
             Respawn();
@@ -92,6 +109,13 @@ public class PlayerController : MonoBehaviour
             SetCountText();
         }
 
+        if(other.gameObject.CompareTag("Health Pickup"))
+        {
+            other.gameObject.SetActive(false);
+            lives = lives + 1;
+            SetLivesText();
+        }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -113,6 +137,16 @@ public class PlayerController : MonoBehaviour
         
        
     }
+
+
+   
+
+
+
+
+
+
+
 }
 
 
