@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         SetLivesText();
     }
 
+    //bool for making sure the player is grounded before/after a jump.
     void OnCollisionStay()
     {
         isGrounded = true;
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+        //If statement for adding jump force and making the bool equal false.
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
@@ -101,6 +102,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //On trigger enter for the pickups and the new Health Pickup.
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
@@ -110,6 +112,7 @@ public class PlayerController : MonoBehaviour
             SetCountText();
         }
 
+        //If statement for Health Pickup Pictured to the left.
         if(other.gameObject.CompareTag("Health Pickup"))
         {
             other.gameObject.SetActive(false);
