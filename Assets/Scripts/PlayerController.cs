@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 jump;
     public float jumpForce = 2.5f;
     public bool isGrounded;
+    public AudioSource source;
 
     private Rigidbody rb;
     private int count;
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
+            source.Play();
         }
 
         //If statement for Health Pickup Pictured to the left.
