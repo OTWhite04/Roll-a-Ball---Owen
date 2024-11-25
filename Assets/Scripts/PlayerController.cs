@@ -141,7 +141,6 @@ public class PlayerController : MonoBehaviour
         rb.Sleep();
         transform.position = respawnPoint.position;
         
-       
     }
 
 
