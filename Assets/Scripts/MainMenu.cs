@@ -20,6 +20,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Roll-a-Ball_Level_2_Owen");
     }
 
+    public void GoToLevel3()
+    {
+        SceneManager.LoadScene("Roll-a-Ball_Level_3_Owen");
+    }
+
     public void ControlsMenu()
     {
         SceneManager.LoadScene("Controls_Menu");
