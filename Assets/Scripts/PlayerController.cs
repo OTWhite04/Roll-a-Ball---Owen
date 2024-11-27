@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 jump;
     public float jumpForce = 2.5f;
     public bool isGrounded;
+    public AudioSource source;
 
     private Rigidbody rb;
     private int count;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         SetLivesText();
     }
 
+    //bool for making sure the player is grounded before/after a jump.
     void OnCollisionStay()
     {
         isGrounded = true;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //If statement for adding jump force and making the bool equal false.
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
@@ -100,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //On trigger enter for the pickups and the new Health Pickup.
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
@@ -107,8 +111,10 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
+            source.Play();
         }
 
+        //If statement for Health Pickup Pictured to the left.
         if(other.gameObject.CompareTag("Health Pickup"))
         {
             other.gameObject.SetActive(false);
@@ -135,7 +141,6 @@ public class PlayerController : MonoBehaviour
         rb.Sleep();
         transform.position = respawnPoint.position;
         
-       
     }
 
 
