@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 2.5f;
     public bool isGrounded;
     public AudioSource source;
+    public AudioSource source2;
 
     private Rigidbody rb;
     private int count;
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             lives = lives + 1;
             SetLivesText();
+            source2.Play();
         }
 
     }
